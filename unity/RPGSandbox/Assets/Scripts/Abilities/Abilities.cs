@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using UnityEngine;
 
 namespace RPGSandbox.Abilities
@@ -13,6 +14,12 @@ namespace RPGSandbox.Abilities
         public event Action<Dictionary<string, Ability>> LoadedEvent;
 
         void Start()
+        {
+            Thread thread = new Thread(LoadAbilities);
+            thread.Start();
+        }
+
+        void LoadAbilities()
         {
             DirectoryInfo directory = new DirectoryInfo(DataPath);
             foreach (var file in directory.GetFiles("*.json"))
