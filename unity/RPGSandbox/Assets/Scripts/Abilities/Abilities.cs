@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RPGSandbox.Abilities
@@ -15,8 +16,7 @@ namespace RPGSandbox.Abilities
 
         void Start()
         {
-            Thread thread = new Thread(LoadAbilities);
-            thread.Start();
+            Task.Run(LoadAbilities).ContinueWith(result => LoadedEvent?.Invoke(abilities));
         }
 
         void LoadAbilities()
@@ -32,8 +32,6 @@ namespace RPGSandbox.Abilities
                     reader.Close();
                 }
             }
-
-            LoadedEvent?.Invoke(abilities);
         }
     }
 }
