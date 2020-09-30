@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
 namespace RPGSandbox.Abilities
 {
-    public class Abilities : MonoBehaviour
+    public class AbilitiesLoader : MonoBehaviour
     {
         public string DataPath = "Assets/Data/Abilities";
         Dictionary<string, Ability> abilities = new Dictionary<string, Ability>();
@@ -16,7 +15,7 @@ namespace RPGSandbox.Abilities
 
         void Start()
         {
-            Task.Run(LoadAbilities).ContinueWith(result => LoadedEvent?.Invoke(abilities));
+            Task.Run(LoadAbilities).ContinueWith(result => LoadedEvent?.Invoke(abilities), TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         void LoadAbilities()
