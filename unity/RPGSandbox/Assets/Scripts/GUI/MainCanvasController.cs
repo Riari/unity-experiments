@@ -6,13 +6,13 @@ namespace RPGSandbox.GUI
 {
     public class MainCanvasController : MonoBehaviour
     {
-        public GameObject SpellsPanel;
+        public GameObject AbilitiesPanel;
 
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.K))
             {
-                SpellsPanel.SetActive(!SpellsPanel.activeSelf);
+                AbilitiesPanel.SetActive(!AbilitiesPanel.activeSelf);
             }
         }
     }

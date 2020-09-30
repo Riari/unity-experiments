@@ -1,4 +1,5 @@
 {
     "Name": "Energy Strike",
-    "Description": "A strike of energy"
+    "Description": "A strike of energy",
+    "Icon": "Sprites/Icons/EnergyStrike"
 }

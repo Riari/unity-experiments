@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 5914761481683618403}
   - component: {fileID: 2046042301686978732}
   - component: {fileID: 8265382252792867898}
+  - component: {fileID: 2887716346625522055}
   m_Layer: 5
-  m_Name: Spell Entry
+  m_Name: Ability Entry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,6 +79,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2887716346625522055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 300014434687848578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5149f71c838b54382ce1df408a2a27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 4886923719802514638}
+  Name: {fileID: 772860226490690477}
+  Description: {fileID: 6453720796069826665}
 --- !u!1 &1005421709916144254
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +106,7 @@ GameObject:
   - component: {fileID: 7839999432360934759}
   - component: {fileID: 772860226490690477}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,7 +172,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Spell Name
+  m_Text: Ability Name
 --- !u!1 &2243637591820145308
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,9 +205,9 @@ RectTransform:
   m_Father: {fileID: 5914761481683618403}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 45, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 45, y: -45}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2619199119024129629

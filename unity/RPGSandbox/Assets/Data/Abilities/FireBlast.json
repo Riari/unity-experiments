@@ -1,4 +1,5 @@
 {
     "Name": "Fire Blast",
-    "Description": "A blast of fire"
+    "Description": "A blast of fire",
+    "Icon": "Sprites/Icons/FireBlast"
 }
