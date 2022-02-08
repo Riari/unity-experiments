@@ -16,6 +16,7 @@ Shader "Unlit/Glass1"
         {
             ZWrite Off
             Blend One One
+            Cull Off
 
             CGPROGRAM
             #pragma vertex vert
