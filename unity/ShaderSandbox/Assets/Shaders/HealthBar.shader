@@ -3,13 +3,21 @@ Shader "Unlit/HealthBar"
     Properties
     {
         _Value ("Value", Range(0.0, 1.0)) = 0.5
-        _ColorBar ("Bar color", Color) = (1, 1, 1, 1)
-        _ColorFillMin ("Min fill color", Color) = (1, 1, 1, 1)
-        _ColorFillMax ("Max fill color", Color) = (1, 1, 1, 1)
+        _BarColor ("Bar color", Color) = (0, 0, 0, 1)
+        _MaskTexture ("Mask texture", 2D) = "" {}
+        _ContainerTexture ("Container texture", 2D) = "" {}
+        _FillTexture ("Fill texture", 2D) = "green" {}
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags {
+            "RenderType"="Transparent"
+            "Queue"="Overlay"
+        }
+
+        ZTest Off
+        ZWrite Off
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
@@ -20,9 +28,11 @@ Shader "Unlit/HealthBar"
             #include "UnityCG.cginc"
 
             float _Value;
-            float4 _ColorBar;
-            float4 _ColorFillMin;
-            float4 _ColorFillMax;
+            float4 _BarColor;
+            sampler2D _MaskTexture;
+            sampler2D _ContainerTexture;
+            sampler2D _FillTexture;
+            float4 _FillTexture_ST;
 
             struct MeshData
             {
@@ -40,13 +50,21 @@ Shader "Unlit/HealthBar"
             {
                 Interpolators o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = TRANSFORM_TEX(v.uv, _FillTexture);
                 return o;
             }
 
             fixed4 frag(Interpolators i) : SV_Target
             {
-                return i.uv.x <= _Value ? lerp(_ColorFillMin, _ColorFillMax, _Value) : _ColorBar;
+                float4 fill = tex2D(_FillTexture, float2(_Value, i.uv.y));
+                if (_Value < 0.25) fill *= (sin(_Time.y * 12) + 6) / 5;
+                float4 color = i.uv.x <= _Value ? fill : _BarColor;
+
+                color *= tex2D(_MaskTexture, i.uv).a;
+                float4 container = tex2D(_ContainerTexture, i.uv);
+                color = lerp(color, container, container.a);
+                
+                return color;
             }
             ENDCG
         }
